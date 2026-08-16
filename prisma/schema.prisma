@@ -1,0 +1,42 @@
+// Roomcraft — Project persistence schema (multi-user)
+// Run `npx prisma migrate dev --name init` after setting DATABASE_URL to create the table.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id     String @id @default(uuid())
+
+  // The signed-in user this project belongs to (Clerk's user id — a plain
+  // string like "user_2abc..."). Every query in the API routes filters by
+  // this, so one person can never see or edit another person's rooms.
+  userId String
+
+  name           String
+  unitPreference String @default("cm")
+
+  // Full room shape: polygon points, wall lengths, ceiling height, pillars,
+  // niches, obstructions — everything produced by the Room Wizard.
+  roomDimensions Json   @default("{}")
+
+  // All placed furniture: [{ id, itemType, customName, position, rotation, scale, hexColor, ... }]
+  furnitureItems Json   @default("[]")
+
+  // Whatever the Vastu AI consultant has said about this specific room.
+  vastuNotes Json?
+
+  // Small data-URI snapshot of the 2D floor plan, used as the dashboard card preview.
+  thumbnail String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, updatedAt])
+  @@map("projects")
+}
