@@ -33,7 +33,8 @@ export default async function Home() {
       </div>
       <h1 style={{ fontSize: 30, marginBottom: 8, color: "#fff", letterSpacing: 0.5 }}>ur nook</h1>
       <p style={{ color: "#7c8a99", marginBottom: 6, lineHeight: 1.6, fontSize: 14.5 }}>
-        Design your room in 3D, place your furniture, and see how it fits — before you move.
+        Design your room in 3D, place your furniture, check if the layout is Vastu-aligned,
+        and see how it all fits — before you move.
       </p>
       <p
         style={{
@@ -47,7 +48,7 @@ export default async function Home() {
         built by iceeyou
       </p>
       <SignedOut>
-        <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
+        <div style={{ display: "flex", gap: 10, justifyContent: "center", marginBottom: 16 }}>
           <SignInButton>
             <button
               style={{
@@ -80,6 +81,12 @@ export default async function Home() {
             </button>
           </SignUpButton>
         </div>
+        <a
+          href="/designer.html?guest=1"
+          style={{ color: "#7c8a99", fontSize: 12.5, textDecoration: "underline" }}
+        >
+          Or just try it as a guest — no account needed
+        </a>
       </SignedOut>
     </main>
   );

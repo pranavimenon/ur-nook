@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "ur nook",
-  description: "Design your room in 3D and see how your furniture fits before you move. Built by iceeyou.",
+  description: "Design your room in 3D, check if it's Vastu-aligned, and see how your furniture fits before you move. Built by iceeyou.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
